@@ -1,14 +1,18 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
-var moment = require('moment-timezone');
+var moment$1 = require('moment-timezone');
+var moment = require('moment');
+var es$1 = require('moment/locale/es');
 var PropTypes = require('prop-types');
 var styled = require('styled-components');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var moment__default$1 = /*#__PURE__*/_interopDefaultLegacy(moment$1);
 var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment);
+var es__default = /*#__PURE__*/_interopDefaultLegacy(es$1);
 var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
 var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
 
@@ -137,49 +141,74 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
   };
 }
 
-var generateDateStructureObject = function generateDateStructureObject(START_DATE, END_DATE) {
-  var DATES = {};
-  var START_DATE_YEAR = START_DATE.year();
-  var START_DATE_MONTH = START_DATE.month();
-  var END_DATE_YEAR = END_DATE.year();
-  var END_DATE_MONTH = END_DATE.month();
+moment__default['default'].defineLocale('es', {
+  parentLocale: 'es',
+  today: 'Hoy'
+});
+var es = {
+  es: es__default['default']
+};
 
-  for (var year = START_DATE_YEAR; year <= END_DATE_YEAR; year++) {
-    DATES[year] = [];
-    var months = [];
+moment__default['default'].defineLocale('en', {
+  parentLocale: 'en',
+  today: 'Today'
+});
+var en = moment__default['default'].localeData('en');
+var en$1 = {
+  en: en
+};
 
-    if (START_DATE_YEAR === END_DATE_YEAR) {
-      for (var i = START_DATE_MONTH; i <= END_DATE_MONTH; i++) {
-        months.push(i);
+var locales = {
+  es: es,
+  en: en$1
+};
+
+var useGenerateDateStructureObject = function useGenerateDateStructureObject(START_DATE, END_DATE) {
+  var DATES_MEMO = React.useMemo(function () {
+    var DATES = {};
+    var START_DATE_YEAR = START_DATE.year();
+    var START_DATE_MONTH = START_DATE.month();
+    var END_DATE_YEAR = END_DATE.year();
+    var END_DATE_MONTH = END_DATE.month();
+
+    for (var year = START_DATE_YEAR; year <= END_DATE_YEAR; year++) {
+      DATES[year] = [];
+      var months = [];
+
+      if (START_DATE_YEAR === END_DATE_YEAR) {
+        for (var i = START_DATE_MONTH; i <= END_DATE_MONTH; i++) {
+          months.push(i);
+        }
+      } else if (year === START_DATE_YEAR) {
+        for (var _i = START_DATE_MONTH; _i <= 11; _i++) {
+          months.push(_i);
+        }
+      } else if (year === END_DATE_YEAR) {
+        for (var _i2 = 0; _i2 <= END_DATE_MONTH; _i2++) {
+          months.push(_i2);
+        }
+      } else {
+        months = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
       }
-    } else if (year === START_DATE_YEAR) {
-      for (var _i = START_DATE_MONTH; _i <= 11; _i++) {
-        months.push(_i);
+
+      for (var _i3 = 0, _months = months; _i3 < _months.length; _i3++) {
+        var month = _months[_i3];
+        var daysOnMonth = moment__default$1['default']("".concat(year, "-").concat(month + 1), 'YYYY-MM').daysInMonth();
+
+        for (var day = 1; day <= daysOnMonth; day++) {
+          if (!DATES[year][month]) DATES[year][month] = [];
+          DATES[year][month].push(day);
+        }
       }
-    } else if (year === END_DATE_YEAR) {
-      for (var _i2 = 0; _i2 <= END_DATE_MONTH; _i2++) {
-        months.push(_i2);
-      }
-    } else {
-      months = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11];
     }
 
-    for (var _i3 = 0, _months = months; _i3 < _months.length; _i3++) {
-      var month = _months[_i3];
-      var daysOnMonth = moment__default['default']("".concat(year, "-").concat(month + 1), 'YYYY-MM').daysInMonth();
-
-      for (var day = 1; day <= daysOnMonth; day++) {
-        if (!DATES[year][month]) DATES[year][month] = [];
-        DATES[year][month].push(day);
-      }
-    }
-  }
-
-  return DATES;
+    return DATES;
+  }, [START_DATE, END_DATE]);
+  return DATES_MEMO;
 };
 
 var useHelpers = function useHelpers(DISABLED_DAYS) {
-  var NOW = moment__default['default']();
+  var NOW = moment__default$1['default']();
   var NOW_FORMATED = NOW.format('YYYY-MM-DD');
   var isToday = React.useCallback(function (dateString) {
     return NOW_FORMATED === dateString;
@@ -225,20 +254,22 @@ var DayStyled = styled__default['default'].span(_templateObject12 || (_templateO
   return props.state.includes('disabled') && "\n        cursor: default;\n        color: #c2c2c2 !important;\n    ";
 }, MOBILE);
 
-moment__default['default'].tz.setDefault("Europe/Madrid");
-
 var MyCalendar = function MyCalendar(_ref) {
   var selected = _ref.selected,
       startDate = _ref.startDate,
       endDate = _ref.endDate,
       disabledDays = _ref.disabledDays,
       format = _ref.format,
+      locale = _ref.locale,
+      timezone = _ref.timezone,
       onChange = _ref.onChange;
-  var START_DATE = moment__default['default'].isMoment(startDate) ? startDate : moment__default['default'](startDate);
-  var END_DATE = moment__default['default'].isMoment(endDate) ? endDate : moment__default['default'](endDate);
+  moment__default$1['default'].tz.setDefault(timezone);
+  moment__default$1['default'].locale(locale, locales[locale]);
+  var START_DATE = moment__default$1['default'].isMoment(startDate) ? startDate : moment__default$1['default'](startDate);
+  var END_DATE = moment__default$1['default'].isMoment(endDate) ? endDate : moment__default$1['default'](endDate);
   var DISABLED_DAYS = disabledDays;
 
-  var _useState = React.useState(moment__default['default'].isMoment(selected) ? selected.format('YYYY-MM-DD') : moment__default['default'](selected).format('YYYY-MM-DD')),
+  var _useState = React.useState(moment__default$1['default'].isMoment(selected) ? selected.format('YYYY-MM-DD') : moment__default$1['default'](selected).format('YYYY-MM-DD')),
       _useState2 = _slicedToArray(_useState, 2),
       dateSelected = _useState2[0],
       setDateSelected = _useState2[1];
@@ -250,13 +281,13 @@ var MyCalendar = function MyCalendar(_ref) {
       isDayDisabled = _useHelpers2[2],
       goToday = _useHelpers2[3];
 
-  var _useState3 = React.useState(moment__default['default']()),
+  var _useState3 = React.useState(moment__default$1['default']()),
       _useState4 = _slicedToArray(_useState3, 2),
       TIME = _useState4[0],
       SET_TIME = _useState4[1];
 
   setInterval(function () {
-    return SET_TIME(moment__default['default']());
+    return SET_TIME(moment__default$1['default']());
   }, 1000); //Events
   //useEffect(() => {
   //    setDateSelected(moment.isMoment(selected) ? selected.format('YYYY-MM-DD') : moment(selected).format('YYYY-MM-DD'))
@@ -265,8 +296,11 @@ var MyCalendar = function MyCalendar(_ref) {
 
   var btnTodayRef = React.useRef();
   var containerCalendarRef = React.useRef();
-  var DATES = generateDateStructureObject(START_DATE, END_DATE);
-  var selectedMomentDate = moment__default['default'](dateSelected, 'YYYY-MM-DD');
+  var DATES = useGenerateDateStructureObject(START_DATE, END_DATE);
+  var selectedMomentDate = moment__default$1['default'](dateSelected, 'YYYY-MM-DD');
+  var weekdaysMin = React.useMemo(function () {
+    return [moment__default$1['default'].weekdaysShort(1), moment__default$1['default'].weekdaysShort(2), moment__default$1['default'].weekdaysShort(3), moment__default$1['default'].weekdaysShort(4), moment__default$1['default'].weekdaysShort(5), moment__default$1['default'].weekdaysShort(6), moment__default$1['default'].weekdaysShort(0)];
+  }, []);
   return /*#__PURE__*/React__default['default'].createElement(CalendarStyled, null, /*#__PURE__*/React__default['default'].createElement("style", {
     dangerouslySetInnerHTML: {
       __html: "\n                @import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap\");\n\n                * {\n                    font-family: \"Montserrat\", sans-serif;\n                    margin: 0;\n                    padding: 0;\n                }\n            "
@@ -282,12 +316,16 @@ var MyCalendar = function MyCalendar(_ref) {
     onClick: function onClick() {
       return goToday(btnTodayRef, containerCalendarRef);
     }
-  }, "TODAY")), /*#__PURE__*/React__default['default'].createElement(WeekDaysStyled, null, /*#__PURE__*/React__default['default'].createElement(WeekDaysTextStyled, null, "Lun"), /*#__PURE__*/React__default['default'].createElement(WeekDaysTextStyled, null, "Mar"), /*#__PURE__*/React__default['default'].createElement(WeekDaysTextStyled, null, "Mie"), /*#__PURE__*/React__default['default'].createElement(WeekDaysTextStyled, null, "Jue"), /*#__PURE__*/React__default['default'].createElement(WeekDaysTextStyled, null, "Vie"), /*#__PURE__*/React__default['default'].createElement(WeekDaysTextStyled, null, "Sab"), /*#__PURE__*/React__default['default'].createElement(WeekDaysTextStyled, null, "Dom")), /*#__PURE__*/React__default['default'].createElement(CalendarDaysContainerStyled, {
+  }, moment__default$1['default'].localeData(locale)._today)), /*#__PURE__*/React__default['default'].createElement(WeekDaysStyled, null, weekdaysMin.map(function (weekDay) {
+    return /*#__PURE__*/React__default['default'].createElement(WeekDaysTextStyled, {
+      key: "week-day-".concat(weekDay)
+    }, weekDay);
+  })), /*#__PURE__*/React__default['default'].createElement(CalendarDaysContainerStyled, {
     ref: containerCalendarRef
   }, Object.keys(DATES).map(function (year) {
     return DATES[year].map(function (days, indexMonth) {
       var arr = [];
-      var spaces = moment__default['default']("".concat(year, "-").concat(indexMonth + 1), 'YYYY-MM').day() - 1;
+      var spaces = moment__default$1['default']("".concat(year, "-").concat(indexMonth + 1), 'YYYY-MM').day() - 1;
 
       for (var x = 0; x < spaces; x++) {
         arr.push( /*#__PURE__*/React__default['default'].createElement("div", {
@@ -299,7 +337,7 @@ var MyCalendar = function MyCalendar(_ref) {
         key: "month-".concat(indexMonth + 1)
       }, /*#__PURE__*/React__default['default'].createElement(MonthTitleStyled, {
         marginTop: indexMonth !== START_DATE.month() && 15
-      }, moment__default['default']("".concat(indexMonth + 1), 'MM').format('MMMM')), /*#__PURE__*/React__default['default'].createElement(MonthContainer, null, days.map(function (day, indexDay) {
+      }, moment__default$1['default']("".concat(indexMonth + 1), 'MM').format('MMMM')), /*#__PURE__*/React__default['default'].createElement(MonthContainer, null, days.map(function (day, indexDay) {
         var currentDate = "".concat(year, "-").concat((indexMonth + 1).toString().padStart(2, '0'), "-").concat(day.toString().padStart(2, '0'));
 
         var _isDayDisabled = isDayDisabled(currentDate);
@@ -312,7 +350,7 @@ var MyCalendar = function MyCalendar(_ref) {
           onClick: function onClick() {
             if (_isDayDisabled) return;
             setDateSelected(currentDate);
-            onChange(!format ? currentDate : moment__default['default'](currentDate, 'YYYY-MM-DD').format(format));
+            onChange(!format ? currentDate : moment__default$1['default'](currentDate, 'YYYY-MM-DD').format(format));
           }
         }, /*#__PURE__*/React__default['default'].createElement(DayStyled, {
           state: [isToday(currentDate) && 'today', !_isDayDisabled && isSelected(currentDate, dateSelected) && 'selected', _isDayDisabled && 'disabled']
@@ -323,17 +361,19 @@ var MyCalendar = function MyCalendar(_ref) {
 };
 
 MyCalendar.defaultProps = {
-  selected: moment__default['default'](),
-  startDate: moment__default['default'](),
-  endDate: moment__default['default']().add(2, 'months'),
+  selected: moment__default$1['default'](),
+  startDate: moment__default$1['default'](),
+  endDate: moment__default$1['default']().add(2, 'months'),
   disabledDays: ['2021-01-03'],
   format: false,
+  locale: 'es',
+  timezone: 'Europe/Madrid',
   onChange: function onChange() {}
 };
 
 var isMomentOrDate = function isMomentOrDate(props, propName, componentName) {
   var prop = props[propName];
-  if (moment__default['default'].isMoment(prop) || prop instanceof Date) return;
+  if (moment__default$1['default'].isMoment(prop) || prop instanceof Date) return;
   return new Error("Prop ".concat(propName, " is invalid. ").concat(propName, " need to be a instance of Date or a Moment"));
 };
 
@@ -365,6 +405,8 @@ MyCalendar.propTypes = {
   startDate: isMomentOrDate,
   endDate: isMomentOrDate,
   format: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].oneOf([false])]),
+  locale: PropTypes__default['default'].oneOf(['es', 'en']),
+  timezone: PropTypes__default['default'].string,
   disabledDays: disabledDaysIsCorrect
 };
 
