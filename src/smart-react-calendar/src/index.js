@@ -21,6 +21,8 @@ import {
     DayStyled
 } from './UI/index.js'
 
+moment.tz.setDefault("Europe/Madrid")
+
 const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChange }) => {
     const START_DATE = moment.isMoment(startDate) ? startDate : moment(startDate)
     const END_DATE = moment.isMoment(endDate) ? endDate : moment(endDate)
@@ -41,6 +43,8 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
     const DATES = generateDateStructureObject(START_DATE, END_DATE)
 
     const selectedMomentDate = moment(dateSelected, 'YYYY-MM-DD')
+
+    console.log("toDate ", moment().format('MMMM Do YYYY, h:mm a z'))
 
     return (
         <CalendarStyled>
