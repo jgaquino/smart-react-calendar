@@ -31,6 +31,9 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
     const [dateSelected, setDateSelected] = useState(moment.isMoment(selected) ? selected.format('YYYY-MM-DD') : moment(selected).format('YYYY-MM-DD'))
     const [isToday, isSelected, isDayDisabled, goToday] = useHelpers(DISABLED_DAYS)
 
+    const [TIME, SET_TIME] = useState(moment())
+    setInterval(() => SET_TIME(moment()), 1000)
+
     //Events
     //useEffect(() => {
     //    setDateSelected(moment.isMoment(selected) ? selected.format('YYYY-MM-DD') : moment(selected).format('YYYY-MM-DD'))
@@ -43,8 +46,6 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
     const DATES = generateDateStructureObject(START_DATE, END_DATE)
 
     const selectedMomentDate = moment(dateSelected, 'YYYY-MM-DD')
-
-    console.log("toDate ", moment().format('MMMM Do YYYY, h:mm a z'))
 
     return (
         <CalendarStyled>
@@ -62,6 +63,7 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
                 <div>
                     <HeaderYearStyled>{selectedMomentDate.format('YYYY')}</HeaderYearStyled>
                     <HeaderDateSelectedStyled>{selectedMomentDate.format('ddd, MMM Do')}</HeaderDateSelectedStyled>
+                    <small style={{ fontSize: '10px', color: 'white', fontWeight: 'bold' }}>Hora en España: {TIME.format('MMMM Do YYYY, h:mm:ss a')}</small>
                 </div>
                 <HeaderBtnTodayStyled ref={btnTodayRef} onClick={() => goToday(btnTodayRef, containerCalendarRef)}>TODAY</HeaderBtnTodayStyled>
             </HeaderStyled>

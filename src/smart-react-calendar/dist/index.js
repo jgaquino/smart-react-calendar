@@ -248,23 +248,36 @@ var MyCalendar = function MyCalendar(_ref) {
       isToday = _useHelpers2[0],
       isSelected = _useHelpers2[1],
       isDayDisabled = _useHelpers2[2],
-      goToday = _useHelpers2[3]; //Events
+      goToday = _useHelpers2[3];
+
+  var _useState3 = React.useState(moment__default['default']()),
+      _useState4 = _slicedToArray(_useState3, 2),
+      TIME = _useState4[0],
+      SET_TIME = _useState4[1];
+
+  setInterval(function () {
+    return SET_TIME(moment__default['default']());
+  }, 1000); //Events
   //useEffect(() => {
   //    setDateSelected(moment.isMoment(selected) ? selected.format('YYYY-MM-DD') : moment(selected).format('YYYY-MM-DD'))
   //}, [selected])
   //Refs
 
-
   var btnTodayRef = React.useRef();
   var containerCalendarRef = React.useRef();
   var DATES = generateDateStructureObject(START_DATE, END_DATE);
   var selectedMomentDate = moment__default['default'](dateSelected, 'YYYY-MM-DD');
-  console.log("toDate ", moment__default['default']().format('MMMM Do YYYY, h:mm a z'));
   return /*#__PURE__*/React__default['default'].createElement(CalendarStyled, null, /*#__PURE__*/React__default['default'].createElement("style", {
     dangerouslySetInnerHTML: {
       __html: "\n                @import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap\");\n\n                * {\n                    font-family: \"Montserrat\", sans-serif;\n                    margin: 0;\n                    padding: 0;\n                }\n            "
     }
-  }), /*#__PURE__*/React__default['default'].createElement(HeaderStyled, null, /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement(HeaderYearStyled, null, selectedMomentDate.format('YYYY')), /*#__PURE__*/React__default['default'].createElement(HeaderDateSelectedStyled, null, selectedMomentDate.format('ddd, MMM Do'))), /*#__PURE__*/React__default['default'].createElement(HeaderBtnTodayStyled, {
+  }), /*#__PURE__*/React__default['default'].createElement(HeaderStyled, null, /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement(HeaderYearStyled, null, selectedMomentDate.format('YYYY')), /*#__PURE__*/React__default['default'].createElement(HeaderDateSelectedStyled, null, selectedMomentDate.format('ddd, MMM Do')), /*#__PURE__*/React__default['default'].createElement("small", {
+    style: {
+      fontSize: '10px',
+      color: 'white',
+      fontWeight: 'bold'
+    }
+  }, "Hora en Espa\xF1a: ", TIME.format('MMMM Do YYYY, h:mm:ss a'))), /*#__PURE__*/React__default['default'].createElement(HeaderBtnTodayStyled, {
     ref: btnTodayRef,
     onClick: function onClick() {
       return goToday(btnTodayRef, containerCalendarRef);
