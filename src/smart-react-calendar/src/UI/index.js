@@ -1,10 +1,17 @@
 import styled from 'styled-components'
 
+const MOBILE = '600px'
+
 const CalendarStyled = styled.div`
-    max-width: 320px;
+    width: 100%;
+    max-width: 500px;
     border-radius: 4px;
     position: relative;
     background: black;
+
+    @media( max-width: ${MOBILE} ){
+        max-width: 320px;
+    }
 `
 
 const HeaderStyled = styled.div`
@@ -19,12 +26,20 @@ const HeaderStyled = styled.div`
 `
 const HeaderYearStyled = styled.span`
     color: white;
-    font-size: 15px;
+    font-size: 16px;
+
+    @media( max-width: ${MOBILE} ){
+        font-size: 15px;
+    }
 `
 const HeaderDateSelectedStyled = styled.p`
     color: white;
     font-weight: 600;
-    font-size: 22px;
+    font-size: 30px;
+
+    @media( max-width: ${MOBILE} ){
+        font-size: 22px;
+    }
 `
 const HeaderBtnTodayStyled = styled.button`
     background: white;
@@ -34,7 +49,11 @@ const HeaderBtnTodayStyled = styled.button`
     border: none;
     padding: 5px 10px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 16px;
+
+    @media( max-width: ${MOBILE} ){
+        font-size: 12px;
+    }
 `
 
 
@@ -56,7 +75,11 @@ const WeekDaysTextStyled = styled.p`
     margin: 0;
     padding: 0;
 
-    font-size: 12px;
+    font-size: 16px;
+
+    @media( max-width: ${MOBILE} ){
+        font-size: 12px;
+    }
 `
 
 const CalendarDaysContainerStyled = styled.div`
@@ -81,7 +104,7 @@ const CalendarDaysContainerStyled = styled.div`
 
 
 const MonthTitleStyled = styled.p`
-    font-size: 15px;
+    font-size: 18px;
     font-weight: bold;
     text-align: center;
     padding: 10px;
@@ -89,6 +112,10 @@ const MonthTitleStyled = styled.p`
     color: white;
     margin-top: ${props => props.marginTop ? `${props.marginTop}px` : 0};
     margin-bottom: 10px;
+
+    @media( max-width: ${MOBILE} ){
+        font-size: 15px;
+    }
 `
 const MonthContainer = styled.div`
     display: grid;
@@ -110,11 +137,11 @@ const DayStyled = styled.span`
     justify-content: center;
     align-items: center;
 
-    width: 40px;
-    height: 40px;
+    width: 50px;
+    height: 50px;
 
     color: #111d4a;
-    font-size: 14px;
+    font-size: 16px;
 
     ${props => props.state.includes('today') && `
         font-weight: bold;
@@ -133,6 +160,12 @@ const DayStyled = styled.span`
         cursor: default;
         color: #c2c2c2 !important;
     `}
+
+    @media( max-width: ${MOBILE} ){
+        width: 40px;
+        height: 40px;
+        font-size: 14px;
+    }
 `
 export {
     CalendarStyled,
