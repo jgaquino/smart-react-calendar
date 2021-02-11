@@ -1,4 +1,4 @@
-import React, { useState, useRef, Fragment } from 'react'
+import React, { useState, useRef, Fragment, useMemo } from 'react'
 import moment from 'moment-timezone'
 
 import useGenerateDateStructureObject from './useGenerateDateStructureObject'
@@ -47,6 +47,16 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
 
     const selectedMomentDate = moment(dateSelected, 'YYYY-MM-DD')
 
+    const weekdaysMin = useMemo(() => [
+        moment.weekdaysMin(1),
+        moment.weekdaysMin(2),
+        moment.weekdaysMin(3),
+        moment.weekdaysMin(4),
+        moment.weekdaysMin(5),
+        moment.weekdaysMin(6),
+        moment.weekdaysMin(0),
+    ])
+
     return (
         <CalendarStyled>
             <style dangerouslySetInnerHTML={{
@@ -69,13 +79,7 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
             </HeaderStyled>
 
             <WeekDaysStyled>
-                <WeekDaysTextStyled>Lun</WeekDaysTextStyled>
-                <WeekDaysTextStyled>Mar</WeekDaysTextStyled>
-                <WeekDaysTextStyled>Mie</WeekDaysTextStyled>
-                <WeekDaysTextStyled>Jue</WeekDaysTextStyled>
-                <WeekDaysTextStyled>Vie</WeekDaysTextStyled>
-                <WeekDaysTextStyled>Sab</WeekDaysTextStyled>
-                <WeekDaysTextStyled>Dom</WeekDaysTextStyled>
+                {weekdaysMin.map(weekDay => <WeekDaysTextStyled>{weekDay}</WeekDaysTextStyled>)}
             </WeekDaysStyled>
 
             <CalendarDaysContainerStyled ref={containerCalendarRef}>
