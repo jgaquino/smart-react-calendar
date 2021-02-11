@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import Calendar from './calendar-jgfullstack-test/dist'
+import Calendar from './smart-react-calendar/dist'
 import moment from 'moment-timezone'
 
 function App() {
