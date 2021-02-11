@@ -19,7 +19,7 @@ function App() {
           selected={moment()}
           startDate={moment()}
           endDate={moment().add(1, 'months')}
-          disabledDays={['2021-02-01']}
+          disabledDays={['2021-02-01', '2021-02-12']}
           onChange={newDate => console.log("HEEEEY ", newDate)}
           format="dd MMMM D"
           locale="es"

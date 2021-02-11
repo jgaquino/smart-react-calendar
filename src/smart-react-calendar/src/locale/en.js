@@ -2,7 +2,8 @@ import moment from 'moment'
 
 moment.defineLocale('en', {
     parentLocale: 'en',
-    today: 'Today'
+    today: 'Today',
+    noDateSelected: 'Select a date...'
 });
 
 const en = moment.localeData('en')
