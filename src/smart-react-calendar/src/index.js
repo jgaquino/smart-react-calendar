@@ -26,8 +26,8 @@ import {
 
 
 
-const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, locale, onChange }) => {
-    moment.tz.setDefault("Europe/Madrid")
+const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, locale, timezone, onChange }) => {
+    moment.tz.setDefault(timezone)
     moment.locale(locale, locales[locale])
 
     const START_DATE = moment.isMoment(startDate) ? startDate : moment(startDate)
@@ -148,6 +148,7 @@ MyCalendar.defaultProps = {
     disabledDays: ['2021-01-03'],
     format: false,
     locale: 'es',
+    timezone: 'Europe/Madrid',
     onChange: () => { }
 }
 
@@ -180,6 +181,7 @@ MyCalendar.propTypes = {
     endDate: isMomentOrDate,
     format: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([false])]),
     locale: PropTypes.oneOf(['es', 'en']),
+    timezone: PropTypes.string,
     disabledDays: disabledDaysIsCorrect
 }
 

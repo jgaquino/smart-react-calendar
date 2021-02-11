@@ -23,6 +23,7 @@ function App() {
           onChange={newDate => console.log("HEEEEY ", newDate)}
           format="dd MMMM D"
           locale="es"
+          timezone="Europe/Madrid"
         />
 
 
