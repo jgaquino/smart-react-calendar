@@ -55,7 +55,7 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
         moment.weekdaysMin(5),
         moment.weekdaysMin(6),
         moment.weekdaysMin(0),
-    ])
+    ], [])
 
     return (
         <CalendarStyled>
@@ -79,7 +79,7 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
             </HeaderStyled>
 
             <WeekDaysStyled>
-                {weekdaysMin.map(weekDay => <WeekDaysTextStyled>{weekDay}</WeekDaysTextStyled>)}
+                {weekdaysMin.map(weekDay => <WeekDaysTextStyled key={`week-day-${weekDay}`}>{weekDay}</WeekDaysTextStyled>)}
             </WeekDaysStyled>
 
             <CalendarDaysContainerStyled ref={containerCalendarRef}>
