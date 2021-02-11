@@ -1,5 +1,8 @@
 import React, { useState, useRef, Fragment, useMemo } from 'react'
 import moment from 'moment-timezone'
+//locales
+import locales from './locale/index'
+
 
 import useGenerateDateStructureObject from './useGenerateDateStructureObject'
 import useHelpers from './useHelpers'
@@ -21,9 +24,12 @@ import {
     DayStyled
 } from './UI/index.js'
 
-moment.tz.setDefault("Europe/Madrid")
 
-const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChange }) => {
+
+const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, locale, onChange }) => {
+    moment.tz.setDefault("Europe/Madrid")
+    moment.locale(locale, locales[locale])
+
     const START_DATE = moment.isMoment(startDate) ? startDate : moment(startDate)
     const END_DATE = moment.isMoment(endDate) ? endDate : moment(endDate)
     const DISABLED_DAYS = disabledDays
@@ -48,13 +54,13 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
     const selectedMomentDate = moment(dateSelected, 'YYYY-MM-DD')
 
     const weekdaysMin = useMemo(() => [
-        moment.weekdaysMin(1),
-        moment.weekdaysMin(2),
-        moment.weekdaysMin(3),
-        moment.weekdaysMin(4),
-        moment.weekdaysMin(5),
-        moment.weekdaysMin(6),
-        moment.weekdaysMin(0),
+        moment.weekdaysShort(1),
+        moment.weekdaysShort(2),
+        moment.weekdaysShort(3),
+        moment.weekdaysShort(4),
+        moment.weekdaysShort(5),
+        moment.weekdaysShort(6),
+        moment.weekdaysShort(0),
     ], [])
 
     return (
@@ -75,7 +81,7 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
                     <HeaderDateSelectedStyled>{selectedMomentDate.format('ddd, MMM Do')}</HeaderDateSelectedStyled>
                     <small style={{ fontSize: '10px', color: 'white', fontWeight: 'bold' }}>Hora en España: {TIME.format('MMMM Do YYYY, h:mm:ss a')}</small>
                 </div>
-                <HeaderBtnTodayStyled ref={btnTodayRef} onClick={() => goToday(btnTodayRef, containerCalendarRef)}>TODAY</HeaderBtnTodayStyled>
+                <HeaderBtnTodayStyled ref={btnTodayRef} onClick={() => goToday(btnTodayRef, containerCalendarRef)}>{moment.localeData(locale)._today}</HeaderBtnTodayStyled>
             </HeaderStyled>
 
             <WeekDaysStyled>
@@ -141,6 +147,7 @@ MyCalendar.defaultProps = {
     endDate: moment().add(2, 'months'),
     disabledDays: ['2021-01-03'],
     format: false,
+    locale: 'es',
     onChange: () => { }
 }
 
@@ -172,6 +179,7 @@ MyCalendar.propTypes = {
     startDate: isMomentOrDate,
     endDate: isMomentOrDate,
     format: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([false])]),
+    locale: PropTypes.oneOf(['es', 'en']),
     disabledDays: disabledDaysIsCorrect
 }
 

@@ -22,6 +22,7 @@ function App() {
           disabledDays={['2021-02-01']}
           onChange={newDate => console.log("HEEEEY ", newDate)}
           format="dd MMMM D"
+          locale="es"
         />
 
 
