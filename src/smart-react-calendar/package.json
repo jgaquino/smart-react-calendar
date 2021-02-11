@@ -1,0 +1,35 @@
+{
+  "name": "calendar-jgfullstack",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "scripts": {
+    "start": "rollup -c -w",
+    "build": "rollup -c"
+  },
+  "author": "",
+  "license": "ISC",
+  "files": [
+    "dist/*"
+  ],
+  "peerDependencies": {
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0"
+  },
+  "dependencies": {
+    "moment-timezone": "^0.5.33",
+    "prop-types": "^15.7.2",
+    "styled-components": "^5.2.1"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.12.13",
+    "@babel/core": "^7.12.13",
+    "@babel/preset-env": "^7.12.13",
+    "@babel/preset-react": "^7.12.13",
+    "@rollup/plugin-babel": "^5.2.3",
+    "npm-run-all": "^4.1.5",
+    "rollup": "^2.38.5",
+    "rollup-plugin-delete": "^2.0.0",
+    "rollup-plugin-peer-deps-external": "^2.2.4"
+  }
+}

@@ -1,17 +1,30 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+
+import Calendar from './calendar-jgfullstack-test/dist'
+import moment from 'moment-timezone'
+
+function App() {
+
+  return (
+    <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
+      
+      
+      <Calendar
+        selected={moment()}
+        startDate={moment()}
+        endDate={moment().add(1, 'months')}
+        disabledDays={['2021-02-01']}
+        onChange={newDate => console.log("HEEEEY ", newDate)}
+        format="dd MMMM D"
+      />
+
+      
+    </div>
+  )
+}
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+  <App />,
   document.getElementById('root')
-);
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+)
