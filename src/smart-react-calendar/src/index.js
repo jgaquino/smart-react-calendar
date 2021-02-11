@@ -1,7 +1,7 @@
 import React, { useState, useRef, Fragment } from 'react'
 import moment from 'moment-timezone'
 
-import generateDateStructureObject from './generateDateStructureObject'
+import useGenerateDateStructureObject from './useGenerateDateStructureObject'
 import useHelpers from './useHelpers'
 
 import PropTypes from 'prop-types'
@@ -43,7 +43,7 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, onChan
     const btnTodayRef = useRef()
     const containerCalendarRef = useRef()
 
-    const DATES = generateDateStructureObject(START_DATE, END_DATE)
+    const DATES = useGenerateDateStructureObject(START_DATE, END_DATE)
 
     const selectedMomentDate = moment(dateSelected, 'YYYY-MM-DD')
 
