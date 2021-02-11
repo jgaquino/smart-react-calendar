@@ -12,7 +12,8 @@
   },
   "scripts": {
     "start": "REACT_APP_ENV=prod react-scripts start",
-    "dev": "REACT_APP_ENV=dev react-scripts start"
+    "dev": "REACT_APP_ENV=dev react-scripts start",
+    "build": "REACT_APP_ENV=prod react-scripts build"
   },
   "eslintConfig": {
     "extends": [
