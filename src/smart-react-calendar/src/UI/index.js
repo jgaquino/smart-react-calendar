@@ -2,6 +2,12 @@ import styled from 'styled-components'
 
 const MOBILE = '600px'
 
+const theme = {
+    primaryColor: "#2e88f1",
+    secondaryColor: "#111d4a",
+    disabledDaysColor: "#c2c2c2"
+}
+
 const CalendarStyled = styled.div`
     width: 100%;
     max-width: 500px;
@@ -15,7 +21,7 @@ const CalendarStyled = styled.div`
 `
 
 const HeaderStyled = styled.div`
-    background: #2e88f1;
+    background: ${theme.primaryColor};
     padding: 20px 30px;
     border-top-left-radius: 4px;
     border-top-right-radius: 4px;
@@ -43,7 +49,7 @@ const HeaderDateSelectedStyled = styled.p`
 `
 const HeaderBtnTodayStyled = styled.button`
     background: white;
-    color: black;
+    color: ${theme.secondaryColor};
     font-weight: 600;
     outline: none;
     border: none;
@@ -70,7 +76,7 @@ const WeekDaysTextStyled = styled.p`
     justify-content: center;
     align-items: center;
 
-    color: #111d4a;
+    color: ${theme.secondaryColor};
     font-weight: bold;
     margin: 0;
     padding: 0;
@@ -108,7 +114,7 @@ const MonthTitleStyled = styled.p`
     font-weight: bold;
     text-align: center;
     padding: 10px;
-    background-color: #2e88f1;
+    background-color: ${theme.primaryColor};
     color: white;
     margin-top: ${props => props.marginTop ? `${props.marginTop}px` : 0};
     margin-bottom: 10px;
@@ -140,25 +146,25 @@ const DayStyled = styled.span`
     width: 50px;
     height: 50px;
 
-    color: #111d4a;
+    color: ${theme.secondaryColor};
     font-size: 16px;
 
     ${props => props.state.includes('today') && `
         font-weight: bold;
-        border: 1px solid #2e88f1;
-        color: #2e88f1;
+        border: 1px solid ${theme.primaryColor};
+        color: ${theme.primaryColor};
     `}
     ${props => props.state.includes('weekend') && `
     `}
     ${props => props.state.includes('selected') && `
         border-radius: 50%;
         font-weight: bold;
-        background-color: #2e88f1;
+        background-color: ${theme.primaryColor};
         color: white;
     `}
     ${props => props.state.includes('disabled') && `
         cursor: default;
-        color: #c2c2c2 !important;
+        color: ${theme.disabledDaysColor} !important;
     `}
 
     @media( max-width: ${MOBILE} ){
