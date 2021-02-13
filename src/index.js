@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
 
-import CalendarDev from './smart-react-calendar/src'
+import CalendarDev from './smart-react-calendar/src/SmartReactCalendar'
 import CalendarProd from './smart-react-calendar/dist'
 
 import moment from 'moment-timezone'

@@ -23,7 +23,7 @@ import {
     DayStyled
 } from './UI/index'
 
-const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, locale, timezone, theme, onChange }) => {
+const SmartReactCalendar = ({ selected, startDate, endDate, disabledDays, format, locale, timezone, theme, onChange }) => {
     moment.tz.setDefault(timezone)
     moment.locale(locale, locales[locale])
 
@@ -137,7 +137,7 @@ const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, locale
     )
 }
 
-MyCalendar.defaultProps = {
+SmartReactCalendar.defaultProps = {
     selected: moment(),
     startDate: moment(),
     endDate: moment().add(2, 'months'),
@@ -176,7 +176,7 @@ const disabledDaysIsCorrect = (props, propName, componentName) => {
         }
     }
 }
-MyCalendar.propTypes = {
+SmartReactCalendar.propTypes = {
     selected: isMomentOrDate,
     startDate: isMomentOrDate,
     endDate: isMomentOrDate,
@@ -187,4 +187,4 @@ MyCalendar.propTypes = {
     theme: PropTypes.object
 }
 
-export default MyCalendar
+export default SmartReactCalendar

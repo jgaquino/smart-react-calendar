@@ -4,7 +4,7 @@ import del from 'rollup-plugin-delete';
 import pkg from './package.json';
 
 export default {
-    input: './src/index.js',
+    input: './src/SmartReactCalendar',
     output: [
         {
             file: pkg.main,
