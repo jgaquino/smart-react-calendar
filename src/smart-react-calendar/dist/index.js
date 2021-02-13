@@ -368,7 +368,7 @@ SmartReactCalendar.defaultProps = {
   selected: moment__default$1['default'](),
   startDate: moment__default$1['default'](),
   endDate: moment__default$1['default']().add(2, 'months'),
-  disabledDays: ['2021-01-03'],
+  disabledDays: [],
   format: false,
   locale: 'es',
   timezone: 'Europe/Madrid',
