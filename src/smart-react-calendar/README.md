@@ -30,8 +30,8 @@ export default Calendar
 | Property | Type | Default | Description                                                                                                                                      |
 |:---------------------|:--------|:-------------|:-------------------------------------------------------------------------------------------------------------------------------------------------|
 | selected | `Moment` or `new Date()` | `moment()` | Selected date
-| startDate | `Moment` or `new Date()` | `moment()` | Month the calendar starts
-| endDate | `Moment` or `new Date()` | `moment()` | month the calendar ends
+| startDate | `Moment` or `new Date()` | `moment()` | Date the calendar starts
+| endDate | `Moment` or `new Date()` | `moment().add(2, 'months')` | Date the calendar ends
 | disabledDays | Array | `[]` | Disabled days
 | format | Boolean | `false` | Date format returned in the `onChange` function
 | locale | String | `es` | Calendar translation
