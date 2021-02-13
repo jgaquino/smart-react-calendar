@@ -231,30 +231,31 @@ var useHelpers = function useHelpers(DISABLED_DAYS) {
   return [isToday, isSelected, isDayDisabled, goToday];
 };
 
-var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
+var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12, _templateObject13;
 var MOBILE = '600px';
-var CalendarStyled = styled__default['default'].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    width: 100%;\n    max-width: 500px;\n    border-radius: 4px;\n    position: relative;\n    background: black;\n\n    @media( max-width: ", " ){\n        max-width: 320px;\n    }\n"])), MOBILE);
-var HeaderStyled = styled__default['default'].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    background: ", ";\n    padding: 20px 30px;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n"])), function (props) {
+var SmartReactCalendarGlobalStyle = styled.createGlobalStyle(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    @import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap\");\n\n    #SmartReactCalendar * {\n        font-family: \"Montserrat\", sans-serif;\n    }\n"])));
+var CalendarStyled = styled__default['default'].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    width: 100%;\n    max-width: 500px;\n    border-radius: 4px;\n    position: relative;\n    background: black;\n\n    @media( max-width: ", " ){\n        max-width: 320px;\n    }\n"])), MOBILE);
+var HeaderStyled = styled__default['default'].div(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    background: ", ";\n    padding: 20px 30px;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n"])), function (props) {
   return props.theme.primaryColor;
 });
-var HeaderYearStyled = styled__default['default'].span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    color: white;\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 15px;\n    }\n"])), MOBILE);
-var HeaderDateSelectedStyled = styled__default['default'].p(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    color: white;\n    font-weight: 600;\n    font-size: 30px;\n\n    @media( max-width: ", " ){\n        font-size: 22px;\n    }\n"])), MOBILE);
-var HeaderBtnTodayStyled = styled__default['default'].button(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    background: white;\n    color: ", ";\n    font-weight: 600;\n    outline: none;\n    border: none;\n    padding: 5px 10px;\n    cursor: pointer;\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), function (props) {
+var HeaderYearStyled = styled__default['default'].span(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    color: white;\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 15px;\n    }\n"])), MOBILE);
+var HeaderDateSelectedStyled = styled__default['default'].p(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    color: white;\n    font-weight: 600;\n    font-size: 30px;\n    margin: 0;\n\n    @media( max-width: ", " ){\n        font-size: 22px;\n    }\n"])), MOBILE);
+var HeaderBtnTodayStyled = styled__default['default'].button(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    background: white;\n    color: ", ";\n    font-weight: 600;\n    outline: none;\n    border: none;\n    padding: 5px 10px;\n    cursor: pointer;\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), function (props) {
   return props.theme.secondaryColor;
 }, MOBILE);
-var WeekDaysStyled = styled__default['default'].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n    text-align: center;\n    background: white;\n    height: 50px;\n    border: 1px solid #0e71e3;\n"])));
-var WeekDaysTextStyled = styled__default['default'].p(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    color: ", ";\n    font-weight: bold;\n    margin: 0;\n    padding: 0;\n\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), function (props) {
+var WeekDaysStyled = styled__default['default'].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n    text-align: center;\n    background: white;\n    height: 50px;\n    border: 1px solid #0e71e3;\n"])));
+var WeekDaysTextStyled = styled__default['default'].p(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    color: ", ";\n    font-weight: bold;\n    margin: 0;\n    padding: 0;\n\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), function (props) {
   return props.theme.secondaryColor;
 }, MOBILE);
-var CalendarDaysContainerStyled = styled__default['default'].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    max-height: 300px;\n    height: 100%;\n    overflow-y: auto;\n\n    border-left: 1px solid #ccc;\n    border-right: 1px solid #ccc;\n    border-bottom: 1px solid #ccc;\n\n    position: relative;\n\n    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0.8) 100%);\n    padding-bottom: 20px;\n\n    scroll-behavior: smooth;\n\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n"])));
-var MonthTitleStyled = styled__default['default'].p(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    padding: 10px;\n    background-color: ", ";\n    color: white;\n    margin-top: ", ";\n    margin-bottom: 10px;\n\n    @media( max-width: ", " ){\n        font-size: 15px;\n    }\n"])), function (props) {
+var CalendarDaysContainerStyled = styled__default['default'].div(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    max-height: 300px;\n    height: 100%;\n    overflow-y: auto;\n\n    border-left: 1px solid #ccc;\n    border-right: 1px solid #ccc;\n    border-bottom: 1px solid #ccc;\n\n    position: relative;\n\n    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0.8) 100%);\n    padding-bottom: 20px;\n\n    scroll-behavior: smooth;\n\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n"])));
+var MonthTitleStyled = styled__default['default'].p(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    padding: 10px;\n    background-color: ", ";\n    color: white;\n    margin-top: ", ";\n    margin-bottom: 10px;\n\n    @media( max-width: ", " ){\n        font-size: 15px;\n    }\n"])), function (props) {
   return props.theme.primaryColor;
 }, function (props) {
   return props.marginTop ? "".concat(props.marginTop, "px") : 0;
 }, MOBILE);
-var MonthContainer = styled__default['default'].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n"])));
-var DayContainerStyled = styled__default['default'].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    text-align: center;\n    cursor: pointer;\n    transition: background-color 200ms, color 200ms;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"])));
-var DayStyled = styled__default['default'].span(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    width: 50px;\n    height: 50px;\n\n    color: ", ";\n    font-size: 16px;\n\n    ", "\n    ", "\n    ", "\n    ", "\n\n    @media( max-width: ", " ){\n        width: 40px;\n        height: 40px;\n        font-size: 14px;\n    }\n"])), function (props) {
+var MonthContainer = styled__default['default'].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n"])));
+var DayContainerStyled = styled__default['default'].div(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    text-align: center;\n    cursor: pointer;\n    transition: background-color 200ms, color 200ms;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"])));
+var DayStyled = styled__default['default'].span(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    width: 50px;\n    height: 50px;\n\n    color: ", ";\n    font-size: 16px;\n\n    ", "\n    ", "\n    ", "\n    ", "\n\n    @media( max-width: ", " ){\n        width: 40px;\n        height: 40px;\n        font-size: 14px;\n    }\n"])), function (props) {
   return props.theme.secondaryColor;
 }, function (props) {
   return props.state.includes('today') && "\n        font-weight: bold;\n        border: 1px solid ".concat(props.theme.primaryColor, ";\n        color: ").concat(props.theme.primaryColor, ";\n    ");
@@ -306,13 +307,11 @@ var SmartReactCalendar = function SmartReactCalendar(_ref) {
   var weekdaysMin = React.useMemo(function () {
     return [moment__default$1['default'].weekdaysShort(1), moment__default$1['default'].weekdaysShort(2), moment__default$1['default'].weekdaysShort(3), moment__default$1['default'].weekdaysShort(4), moment__default$1['default'].weekdaysShort(5), moment__default$1['default'].weekdaysShort(6), moment__default$1['default'].weekdaysShort(0)];
   }, []);
-  return /*#__PURE__*/React__default['default'].createElement(styled.ThemeProvider, {
+  return /*#__PURE__*/React__default['default'].createElement(React.Fragment, null, /*#__PURE__*/React__default['default'].createElement(SmartReactCalendarGlobalStyle, null), /*#__PURE__*/React__default['default'].createElement(styled.ThemeProvider, {
     theme: theme
-  }, /*#__PURE__*/React__default['default'].createElement(CalendarStyled, null, /*#__PURE__*/React__default['default'].createElement("style", {
-    dangerouslySetInnerHTML: {
-      __html: "\n                @import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap\");\n\n                * {\n                    font-family: \"Montserrat\", sans-serif;\n                    margin: 0;\n                    padding: 0;\n                }\n            "
-    }
-  }), /*#__PURE__*/React__default['default'].createElement(HeaderStyled, null, /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement(HeaderYearStyled, null, selectedMomentDate ? selectedMomentDate.format('YYYY') : /*#__PURE__*/React__default['default'].createElement("span", {
+  }, /*#__PURE__*/React__default['default'].createElement(CalendarStyled, {
+    id: "SmartReactCalendar"
+  }, /*#__PURE__*/React__default['default'].createElement(HeaderStyled, null, /*#__PURE__*/React__default['default'].createElement("div", null, /*#__PURE__*/React__default['default'].createElement(HeaderYearStyled, null, selectedMomentDate ? selectedMomentDate.format('YYYY') : /*#__PURE__*/React__default['default'].createElement("span", {
     style: {
       opacity: 0
     }
@@ -362,7 +361,7 @@ var SmartReactCalendar = function SmartReactCalendar(_ref) {
         }, day)));
       })));
     });
-  }))));
+  })))));
 };
 
 SmartReactCalendar.defaultProps = {
