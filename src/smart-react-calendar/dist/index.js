@@ -307,7 +307,7 @@ var SmartReactCalendar = function SmartReactCalendar(_ref) {
   var weekdaysMin = React.useMemo(function () {
     return [moment__default$1['default'].weekdaysShort(1), moment__default$1['default'].weekdaysShort(2), moment__default$1['default'].weekdaysShort(3), moment__default$1['default'].weekdaysShort(4), moment__default$1['default'].weekdaysShort(5), moment__default$1['default'].weekdaysShort(6), moment__default$1['default'].weekdaysShort(0)];
   }, []);
-  return /*#__PURE__*/React__default['default'].createElement(React.Fragment, null, /*#__PURE__*/React__default['default'].createElement(SmartReactCalendarGlobalStyle, null), /*#__PURE__*/React__default['default'].createElement(styled.ThemeProvider, {
+  return /*#__PURE__*/React__default['default'].createElement(React.Fragment, null, !theme.disabledFont && /*#__PURE__*/React__default['default'].createElement(SmartReactCalendarGlobalStyle, null), /*#__PURE__*/React__default['default'].createElement(styled.ThemeProvider, {
     theme: theme
   }, /*#__PURE__*/React__default['default'].createElement(CalendarStyled, {
     id: "SmartReactCalendar"
@@ -376,7 +376,8 @@ SmartReactCalendar.defaultProps = {
   theme: {
     primaryColor: "#2e88f1",
     secondaryColor: "#111d4a",
-    disabledDaysColor: "#c2c2c2"
+    disabledDaysColor: "#c2c2c2",
+    disabledFont: false
   }
 };
 
