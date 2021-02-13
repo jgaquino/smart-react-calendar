@@ -1,20 +1,20 @@
 Object.defineProperty(exports, '__esModule', { value: true });
 
 var React = require('react');
+var styled = require('styled-components');
+var PropTypes = require('prop-types');
 var moment$1 = require('moment-timezone');
 var moment = require('moment');
 var es$1 = require('moment/locale/es');
-var PropTypes = require('prop-types');
-var styled = require('styled-components');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
 var React__default = /*#__PURE__*/_interopDefaultLegacy(React);
+var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
+var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
 var moment__default$1 = /*#__PURE__*/_interopDefaultLegacy(moment$1);
 var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment);
 var es__default = /*#__PURE__*/_interopDefaultLegacy(es$1);
-var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
-var styled__default = /*#__PURE__*/_interopDefaultLegacy(styled);
 
 function _taggedTemplateLiteral(strings, raw) {
   if (!raw) {
@@ -141,7 +141,7 @@ function _createForOfIteratorHelper(o, allowArrayLike) {
   };
 }
 
-moment__default['default'].defineLocale('es', {
+moment__default['default'].updateLocale('es', {
   parentLocale: 'es',
   today: 'Hoy',
   noDateSelected: 'Seleccione una fecha...'
@@ -150,7 +150,7 @@ var es = {
   es: es__default['default']
 };
 
-moment__default['default'].defineLocale('en', {
+moment__default['default'].updateLocale('en', {
   parentLocale: 'en',
   today: 'Today',
   noDateSelected: 'Select a date...'
@@ -234,29 +234,39 @@ var useHelpers = function useHelpers(DISABLED_DAYS) {
 var _templateObject, _templateObject2, _templateObject3, _templateObject4, _templateObject5, _templateObject6, _templateObject7, _templateObject8, _templateObject9, _templateObject10, _templateObject11, _templateObject12;
 var MOBILE = '600px';
 var CalendarStyled = styled__default['default'].div(_templateObject || (_templateObject = _taggedTemplateLiteral(["\n    width: 100%;\n    max-width: 500px;\n    border-radius: 4px;\n    position: relative;\n    background: black;\n\n    @media( max-width: ", " ){\n        max-width: 320px;\n    }\n"])), MOBILE);
-var HeaderStyled = styled__default['default'].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    background: #2e88f1;\n    padding: 20px 30px;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n"])));
+var HeaderStyled = styled__default['default'].div(_templateObject2 || (_templateObject2 = _taggedTemplateLiteral(["\n    background: ", ";\n    padding: 20px 30px;\n    border-top-left-radius: 4px;\n    border-top-right-radius: 4px;\n\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n"])), function (props) {
+  return props.theme.primaryColor;
+});
 var HeaderYearStyled = styled__default['default'].span(_templateObject3 || (_templateObject3 = _taggedTemplateLiteral(["\n    color: white;\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 15px;\n    }\n"])), MOBILE);
 var HeaderDateSelectedStyled = styled__default['default'].p(_templateObject4 || (_templateObject4 = _taggedTemplateLiteral(["\n    color: white;\n    font-weight: 600;\n    font-size: 30px;\n\n    @media( max-width: ", " ){\n        font-size: 22px;\n    }\n"])), MOBILE);
-var HeaderBtnTodayStyled = styled__default['default'].button(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    background: white;\n    color: black;\n    font-weight: 600;\n    outline: none;\n    border: none;\n    padding: 5px 10px;\n    cursor: pointer;\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), MOBILE);
+var HeaderBtnTodayStyled = styled__default['default'].button(_templateObject5 || (_templateObject5 = _taggedTemplateLiteral(["\n    background: white;\n    color: ", ";\n    font-weight: 600;\n    outline: none;\n    border: none;\n    padding: 5px 10px;\n    cursor: pointer;\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), function (props) {
+  return props.theme.secondaryColor;
+}, MOBILE);
 var WeekDaysStyled = styled__default['default'].div(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n    text-align: center;\n    background: white;\n    height: 50px;\n    border: 1px solid #0e71e3;\n"])));
-var WeekDaysTextStyled = styled__default['default'].p(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    color: #111d4a;\n    font-weight: bold;\n    margin: 0;\n    padding: 0;\n\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), MOBILE);
+var WeekDaysTextStyled = styled__default['default'].p(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    color: ", ";\n    font-weight: bold;\n    margin: 0;\n    padding: 0;\n\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), function (props) {
+  return props.theme.secondaryColor;
+}, MOBILE);
 var CalendarDaysContainerStyled = styled__default['default'].div(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    max-height: 300px;\n    height: 100%;\n    overflow-y: auto;\n\n    border-left: 1px solid #ccc;\n    border-right: 1px solid #ccc;\n    border-bottom: 1px solid #ccc;\n\n    position: relative;\n\n    background: linear-gradient(180deg, rgba(255, 255, 255, 1) 80%, rgba(255, 255, 255, 0.8) 100%);\n    padding-bottom: 20px;\n\n    scroll-behavior: smooth;\n\n    border-bottom-left-radius: 4px;\n    border-bottom-right-radius: 4px;\n"])));
-var MonthTitleStyled = styled__default['default'].p(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    padding: 10px;\n    background-color: #2e88f1;\n    color: white;\n    margin-top: ", ";\n    margin-bottom: 10px;\n\n    @media( max-width: ", " ){\n        font-size: 15px;\n    }\n"])), function (props) {
+var MonthTitleStyled = styled__default['default'].p(_templateObject9 || (_templateObject9 = _taggedTemplateLiteral(["\n    font-size: 18px;\n    font-weight: bold;\n    text-align: center;\n    padding: 10px;\n    background-color: ", ";\n    color: white;\n    margin-top: ", ";\n    margin-bottom: 10px;\n\n    @media( max-width: ", " ){\n        font-size: 15px;\n    }\n"])), function (props) {
+  return props.theme.primaryColor;
+}, function (props) {
   return props.marginTop ? "".concat(props.marginTop, "px") : 0;
 }, MOBILE);
 var MonthContainer = styled__default['default'].div(_templateObject10 || (_templateObject10 = _taggedTemplateLiteral(["\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n"])));
 var DayContainerStyled = styled__default['default'].div(_templateObject11 || (_templateObject11 = _taggedTemplateLiteral(["\n    text-align: center;\n    cursor: pointer;\n    transition: background-color 200ms, color 200ms;\n\n    display: flex;\n    justify-content: center;\n    align-items: center;\n"])));
-var DayStyled = styled__default['default'].span(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    width: 50px;\n    height: 50px;\n\n    color: #111d4a;\n    font-size: 16px;\n\n    ", "\n    ", "\n    ", "\n    ", "\n\n    @media( max-width: ", " ){\n        width: 40px;\n        height: 40px;\n        font-size: 14px;\n    }\n"])), function (props) {
-  return props.state.includes('today') && "\n        font-weight: bold;\n        border: 1px solid #2e88f1;\n        color: #2e88f1;\n    ";
+var DayStyled = styled__default['default'].span(_templateObject12 || (_templateObject12 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    width: 50px;\n    height: 50px;\n\n    color: ", ";\n    font-size: 16px;\n\n    ", "\n    ", "\n    ", "\n    ", "\n\n    @media( max-width: ", " ){\n        width: 40px;\n        height: 40px;\n        font-size: 14px;\n    }\n"])), function (props) {
+  return props.theme.secondaryColor;
+}, function (props) {
+  return props.state.includes('today') && "\n        font-weight: bold;\n        border: 1px solid ".concat(props.theme.primaryColor, ";\n        color: ").concat(props.theme.primaryColor, ";\n    ");
 }, function (props) {
   return props.state.includes('weekend') && "\n    ";
 }, function (props) {
-  return props.state.includes('selected') && "\n        border-radius: 50%;\n        font-weight: bold;\n        background-color: #2e88f1;\n        color: white;\n    ";
+  return props.state.includes('selected') && "\n        border-radius: 50%;\n        font-weight: bold;\n        background-color: ".concat(props.theme.primaryColor, ";\n        color: white;\n    ");
 }, function (props) {
-  return props.state.includes('disabled') && "\n        cursor: default;\n        color: #c2c2c2 !important;\n    ";
+  return props.state.includes('disabled') && "\n        cursor: default;\n        color: ".concat(props.theme.disabledDaysColor, " !important;\n    ");
 }, MOBILE);
 
-var MyCalendar = function MyCalendar(_ref) {
+var SmartReactCalendar = function SmartReactCalendar(_ref) {
   var selected = _ref.selected,
       startDate = _ref.startDate,
       endDate = _ref.endDate,
@@ -264,6 +274,7 @@ var MyCalendar = function MyCalendar(_ref) {
       format = _ref.format,
       locale = _ref.locale,
       timezone = _ref.timezone,
+      theme = _ref.theme,
       onChange = _ref.onChange;
   moment__default$1['default'].tz.setDefault(timezone);
   moment__default$1['default'].locale(locale, locales[locale]);
@@ -295,7 +306,9 @@ var MyCalendar = function MyCalendar(_ref) {
   var weekdaysMin = React.useMemo(function () {
     return [moment__default$1['default'].weekdaysShort(1), moment__default$1['default'].weekdaysShort(2), moment__default$1['default'].weekdaysShort(3), moment__default$1['default'].weekdaysShort(4), moment__default$1['default'].weekdaysShort(5), moment__default$1['default'].weekdaysShort(6), moment__default$1['default'].weekdaysShort(0)];
   }, []);
-  return /*#__PURE__*/React__default['default'].createElement(CalendarStyled, null, /*#__PURE__*/React__default['default'].createElement("style", {
+  return /*#__PURE__*/React__default['default'].createElement(styled.ThemeProvider, {
+    theme: theme
+  }, /*#__PURE__*/React__default['default'].createElement(CalendarStyled, null, /*#__PURE__*/React__default['default'].createElement("style", {
     dangerouslySetInnerHTML: {
       __html: "\n                @import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap\");\n\n                * {\n                    font-family: \"Montserrat\", sans-serif;\n                    margin: 0;\n                    padding: 0;\n                }\n            "
     }
@@ -349,10 +362,10 @@ var MyCalendar = function MyCalendar(_ref) {
         }, day)));
       })));
     });
-  })));
+  }))));
 };
 
-MyCalendar.defaultProps = {
+SmartReactCalendar.defaultProps = {
   selected: moment__default$1['default'](),
   startDate: moment__default$1['default'](),
   endDate: moment__default$1['default']().add(2, 'months'),
@@ -360,7 +373,12 @@ MyCalendar.defaultProps = {
   format: false,
   locale: 'es',
   timezone: 'Europe/Madrid',
-  onChange: function onChange() {}
+  onChange: function onChange() {},
+  theme: {
+    primaryColor: "#2e88f1",
+    secondaryColor: "#111d4a",
+    disabledDaysColor: "#c2c2c2"
+  }
 };
 
 var isMomentOrDate = function isMomentOrDate(props, propName, componentName) {
@@ -371,7 +389,7 @@ var isMomentOrDate = function isMomentOrDate(props, propName, componentName) {
 
 var disabledDaysIsCorrect = function disabledDaysIsCorrect(props, propName, componentName) {
   var disabledDays = props.disabledDays;
-  var patt = /^(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/gm;
+  var patt = /^(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/;
 
   var _iterator = _createForOfIteratorHelper(disabledDays),
       _step;
@@ -392,15 +410,16 @@ var disabledDaysIsCorrect = function disabledDaysIsCorrect(props, propName, comp
   }
 };
 
-MyCalendar.propTypes = {
+SmartReactCalendar.propTypes = {
   selected: isMomentOrDate,
   startDate: isMomentOrDate,
   endDate: isMomentOrDate,
   format: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].oneOf([false])]),
   locale: PropTypes__default['default'].oneOf(['es', 'en']),
   timezone: PropTypes__default['default'].string,
-  disabledDays: disabledDaysIsCorrect
+  disabledDays: disabledDaysIsCorrect,
+  theme: PropTypes__default['default'].object
 };
 
-exports.default = MyCalendar;
+exports.default = SmartReactCalendar;
 //# sourceMappingURL=index.js.map
