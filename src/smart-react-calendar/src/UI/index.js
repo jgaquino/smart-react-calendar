@@ -1,6 +1,15 @@
-import styled from 'styled-components'
+import styled, { createGlobalStyle } from 'styled-components'
 
 const MOBILE = '600px'
+
+
+const SmartReactCalendarGlobalStyle = createGlobalStyle`
+    @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap");
+
+    #SmartReactCalendar * {
+        font-family: "Montserrat", sans-serif;
+    }
+`
 
 const CalendarStyled = styled.div`
     width: 100%;
@@ -36,6 +45,7 @@ const HeaderDateSelectedStyled = styled.p`
     color: white;
     font-weight: 600;
     font-size: 30px;
+    margin: 0;
 
     @media( max-width: ${MOBILE} ){
         font-size: 22px;
@@ -167,6 +177,7 @@ const DayStyled = styled.span`
         font-size: 14px;
     }
 `
+
 export {
     CalendarStyled,
     HeaderStyled,
@@ -179,5 +190,6 @@ export {
     MonthTitleStyled,
     MonthContainer,
     DayContainerStyled,
-    DayStyled
+    DayStyled,
+    SmartReactCalendarGlobalStyle
 }

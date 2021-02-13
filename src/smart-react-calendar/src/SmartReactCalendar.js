@@ -20,7 +20,8 @@ import {
     MonthTitleStyled,
     MonthContainer,
     DayContainerStyled,
-    DayStyled
+    DayStyled,
+    SmartReactCalendarGlobalStyle
 } from './UI/index'
 
 const SmartReactCalendar = ({ selected, startDate, endDate, disabledDays, format, locale, timezone, theme, onChange }) => {
@@ -59,81 +60,75 @@ const SmartReactCalendar = ({ selected, startDate, endDate, disabledDays, format
     ], [])
 
     return (
-        <ThemeProvider theme={theme}>
-            <CalendarStyled>
-                <style dangerouslySetInnerHTML={{
-                    __html: `
-                @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;700&display=swap");
+        <Fragment>
+            <SmartReactCalendarGlobalStyle />
+            
+            <ThemeProvider theme={theme}>
+                <CalendarStyled id="SmartReactCalendar">
+                    <HeaderStyled>
+                        <div>
+                            <HeaderYearStyled>{selectedMomentDate ? selectedMomentDate.format('YYYY') : <span style={{ opacity: 0 }}>0000</span>}</HeaderYearStyled>
+                            <HeaderDateSelectedStyled>{selectedMomentDate ? selectedMomentDate.format('ddd, MMM Do') : moment.localeData(locale)._noDateSelected}</HeaderDateSelectedStyled>
+                        </div>
+                        <HeaderBtnTodayStyled ref={btnTodayRef} onClick={() => goToday(btnTodayRef, containerCalendarRef)}>{moment.localeData(locale)._today}</HeaderBtnTodayStyled>
+                    </HeaderStyled>
 
-                * {
-                    font-family: "Montserrat", sans-serif;
-                    margin: 0;
-                    padding: 0;
-                }
-            `}}></style>
-                <HeaderStyled>
-                    <div>
-                        <HeaderYearStyled>{selectedMomentDate ? selectedMomentDate.format('YYYY') : <span style={{ opacity: 0 }}>0000</span>}</HeaderYearStyled>
-                        <HeaderDateSelectedStyled>{selectedMomentDate ? selectedMomentDate.format('ddd, MMM Do') : moment.localeData(locale)._noDateSelected}</HeaderDateSelectedStyled>
-                    </div>
-                    <HeaderBtnTodayStyled ref={btnTodayRef} onClick={() => goToday(btnTodayRef, containerCalendarRef)}>{moment.localeData(locale)._today}</HeaderBtnTodayStyled>
-                </HeaderStyled>
+                    <WeekDaysStyled>
+                        {weekdaysMin.map(weekDay => <WeekDaysTextStyled key={`week-day-${weekDay}`}>{weekDay}</WeekDaysTextStyled>)}
+                    </WeekDaysStyled>
 
-                <WeekDaysStyled>
-                    {weekdaysMin.map(weekDay => <WeekDaysTextStyled key={`week-day-${weekDay}`}>{weekDay}</WeekDaysTextStyled>)}
-                </WeekDaysStyled>
+                    <CalendarDaysContainerStyled ref={containerCalendarRef}>
+                        {Object.keys(DATES).map(year => {
+                            return DATES[year].map((days, indexMonth) => {
+                                let arr = []
 
-                <CalendarDaysContainerStyled ref={containerCalendarRef}>
-                    {Object.keys(DATES).map(year => {
-                        return DATES[year].map((days, indexMonth) => {
-                            let arr = []
+                                let spaces = moment(`${year}-${indexMonth + 1}`, 'YYYY-MM').day() - 1
+                                for (let x = 0; x < spaces; x++) {
+                                    arr.push(<div key={`space-index-${x}-${year}-${indexMonth + 1}`}></div>)
+                                }
 
-                            let spaces = moment(`${year}-${indexMonth + 1}`, 'YYYY-MM').day() - 1
-                            for (let x = 0; x < spaces; x++) {
-                                arr.push(<div key={`space-index-${x}-${year}-${indexMonth + 1}`}></div>)
-                            }
+                                return (
+                                    <Fragment key={`month-${indexMonth + 1}`}>
+                                        <MonthTitleStyled marginTop={indexMonth !== START_DATE.month() && 15}>
+                                            {moment(`${indexMonth + 1}`, 'MM').format('MMMM')}
+                                        </MonthTitleStyled>
+                                        <MonthContainer>
+                                            {
+                                                days.map((day, indexDay) => {
+                                                    let currentDate = `${year}-${(indexMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
+                                                    let _isDayDisabled = isDayDisabled(currentDate)
 
-                            return (
-                                <Fragment key={`month-${indexMonth + 1}`}>
-                                    <MonthTitleStyled marginTop={indexMonth !== START_DATE.month() && 15}>
-                                        {moment(`${indexMonth + 1}`, 'MM').format('MMMM')}
-                                    </MonthTitleStyled>
-                                    <MonthContainer>
-                                        {
-                                            days.map((day, indexDay) => {
-                                                let currentDate = `${year}-${(indexMonth + 1).toString().padStart(2, '0')}-${day.toString().padStart(2, '0')}`
-                                                let _isDayDisabled = isDayDisabled(currentDate)
-
-                                                return (
-                                                    <Fragment key={`day-${currentDate}`}>
-                                                        {indexDay === 0 && arr.map(div => div)}
-                                                        <DayContainerStyled
-                                                            onClick={() => {
-                                                                if (_isDayDisabled || currentDate === dateSelected) return
-                                                                setDateSelected(currentDate)
-                                                                onChange(!format ? currentDate : moment(currentDate, 'YYYY-MM-DD').format(format))
-                                                            }}
-                                                        >
-                                                            <DayStyled state={[
-                                                                isToday(currentDate) && 'today',
-                                                                !_isDayDisabled && isSelected(currentDate, dateSelected) && 'selected',
-                                                                _isDayDisabled && 'disabled'
-                                                            ]}>
-                                                                {day}
-                                                            </DayStyled>
-                                                        </DayContainerStyled>
-                                                    </Fragment>
-                                                )
-                                            })
-                                        }
-                                    </MonthContainer>
-                                </Fragment>
-                            )
-                        })
-                    })}
-                </CalendarDaysContainerStyled>
-            </CalendarStyled>
-        </ThemeProvider>
+                                                    return (
+                                                        <Fragment key={`day-${currentDate}`}>
+                                                            {indexDay === 0 && arr.map(div => div)}
+                                                            <DayContainerStyled
+                                                                onClick={() => {
+                                                                    if (_isDayDisabled || currentDate === dateSelected) return
+                                                                    setDateSelected(currentDate)
+                                                                    onChange(!format ? currentDate : moment(currentDate, 'YYYY-MM-DD').format(format))
+                                                                }}
+                                                            >
+                                                                <DayStyled state={[
+                                                                    isToday(currentDate) && 'today',
+                                                                    !_isDayDisabled && isSelected(currentDate, dateSelected) && 'selected',
+                                                                    _isDayDisabled && 'disabled'
+                                                                ]}>
+                                                                    {day}
+                                                                </DayStyled>
+                                                            </DayContainerStyled>
+                                                        </Fragment>
+                                                    )
+                                                })
+                                            }
+                                        </MonthContainer>
+                                    </Fragment>
+                                )
+                            })
+                        })}
+                    </CalendarDaysContainerStyled>
+                </CalendarStyled>
+            </ThemeProvider>
+        </Fragment>
     )
 }
 
