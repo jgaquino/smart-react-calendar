@@ -353,7 +353,7 @@ var SmartReactCalendar = function SmartReactCalendar(_ref) {
           return div;
         }), /*#__PURE__*/React__default['default'].createElement(DayContainerStyled, {
           onClick: function onClick() {
-            if (_isDayDisabled) return;
+            if (_isDayDisabled || currentDate === dateSelected) return;
             setDateSelected(currentDate);
             onChange(!format ? currentDate : moment__default$1['default'](currentDate, 'YYYY-MM-DD').format(format));
           }
