@@ -160,7 +160,7 @@ const isMomentOrDate = (props, propName, componentName) => {
 }
 const disabledDaysIsCorrect = (props, propName, componentName) => {
     const { disabledDays } = props
-    const patt = /^(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/gm
+    const patt = /^(\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))$/
 
     for (let disabledDay of disabledDays) {
         let disabledDaysIsValid = patt.test(disabledDay)
