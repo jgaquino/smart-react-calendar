@@ -18,8 +18,8 @@ npm install smart-react-calendar
 import SmartReactCalendar from 'smart-react-calendar'
 
 const Calendar = () => {
-  render(
-    <Calendar />
+  return(
+    <SmartReactCalendar />
   )
 }
 
