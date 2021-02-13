@@ -27,7 +27,8 @@ function App() {
           theme={{
             primaryColor: "#2e88f1",
             secondaryColor: "#111d4a",
-            disabledDaysColor: "#c2c2c2"
+            disabledDaysColor: "#c2c2c2",
+            disabledFont: false
           }}
         />
 
