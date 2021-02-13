@@ -1,6 +1,7 @@
 # Smart React Calendar
 
 Simple calendar for your React App and NextJS 
+
 ![alt text](https://projects.jgfrontend.com/smart-react-calendar-assets/screenshot-calendar.png)
 
 ## Installation
