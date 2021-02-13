@@ -1,6 +1,6 @@
 import moment from 'moment'
 
-moment.defineLocale('en', {
+moment.updateLocale('en', {
     parentLocale: 'en',
     today: 'Today',
     noDateSelected: 'Select a date...'
