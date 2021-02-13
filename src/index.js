@@ -24,6 +24,11 @@ function App() {
           format="dd MMMM D"
           locale="es"
           timezone="Europe/Madrid"
+          theme={{
+            primaryColor: "#2e88f1",
+            secondaryColor: "#111d4a",
+            disabledDaysColor: "#c2c2c2"
+          }}
         />
 
 

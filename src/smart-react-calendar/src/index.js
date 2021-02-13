@@ -1,34 +1,32 @@
 import React, { useState, useRef, Fragment, useMemo } from 'react'
+import PropTypes from 'prop-types'
+
 import moment from 'moment-timezone'
 //locales
 import locales from './locale/index'
 
-
 import useGenerateDateStructureObject from './useGenerateDateStructureObject'
 import useHelpers from './useHelpers'
+import UI from './UI/index.js'
 
-import PropTypes from 'prop-types'
-
-import {
-    CalendarStyled,
-    HeaderStyled,
-    HeaderYearStyled,
-    HeaderDateSelectedStyled,
-    HeaderBtnTodayStyled,
-    WeekDaysStyled,
-    WeekDaysTextStyled,
-    CalendarDaysContainerStyled,
-    MonthTitleStyled,
-    MonthContainer,
-    DayContainerStyled,
-    DayStyled
-} from './UI/index.js'
-
-
-
-const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, locale, timezone, onChange }) => {
+const MyCalendar = ({ selected, startDate, endDate, disabledDays, format, locale, timezone, theme, onChange }) => {
     moment.tz.setDefault(timezone)
     moment.locale(locale, locales[locale])
+
+    const {
+        CalendarStyled,
+        HeaderStyled,
+        HeaderYearStyled,
+        HeaderDateSelectedStyled,
+        HeaderBtnTodayStyled,
+        WeekDaysStyled,
+        WeekDaysTextStyled,
+        CalendarDaysContainerStyled,
+        MonthTitleStyled,
+        MonthContainer,
+        DayContainerStyled,
+        DayStyled
+    } = UI(theme)
 
     const START_DATE = moment.isMoment(startDate) ? startDate : moment(startDate)
     const END_DATE = moment.isMoment(endDate) ? endDate : moment(endDate)
@@ -146,7 +144,12 @@ MyCalendar.defaultProps = {
     format: false,
     locale: 'es',
     timezone: 'Europe/Madrid',
-    onChange: () => { }
+    onChange: () => { },
+    theme: {
+        primaryColor: "#2e88f1",
+        secondaryColor: "#111d4a",
+        disabledDaysColor: "#c2c2c2"
+    }
 }
 
 const isMomentOrDate = (props, propName, componentName) => {
@@ -179,7 +182,8 @@ MyCalendar.propTypes = {
     format: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([false])]),
     locale: PropTypes.oneOf(['es', 'en']),
     timezone: PropTypes.string,
-    disabledDays: disabledDaysIsCorrect
+    disabledDays: disabledDaysIsCorrect,
+    theme: PropTypes.object
 }
 
 export default MyCalendar
