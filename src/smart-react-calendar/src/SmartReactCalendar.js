@@ -109,7 +109,7 @@ const SmartReactCalendar = ({ selected, startDate, endDate, disabledDays, format
                                                         {indexDay === 0 && arr.map(div => div)}
                                                         <DayContainerStyled
                                                             onClick={() => {
-                                                                if (_isDayDisabled) return
+                                                                if (_isDayDisabled || currentDate === dateSelected) return
                                                                 setDateSelected(currentDate)
                                                                 onChange(!format ? currentDate : moment(currentDate, 'YYYY-MM-DD').format(format))
                                                             }}
