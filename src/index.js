@@ -22,7 +22,7 @@ function App() {
           disabledDays={['2021-02-01', '2021-02-12']}
           onChange={newDate => console.log("HEEEEY ", newDate)}
           format="dd MMMM D"
-          locale="es"
+          locale="en"
           timezone="Europe/Madrid"
           theme={{
             primaryColor: "#2e88f1",

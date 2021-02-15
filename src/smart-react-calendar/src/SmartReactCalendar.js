@@ -138,7 +138,7 @@ SmartReactCalendar.defaultProps = {
     endDate: moment().add(2, 'months'),
     disabledDays: [],
     format: false,
-    locale: 'es',
+    locale: 'en',
     timezone: 'Europe/Madrid',
     onChange: () => { },
     theme: {

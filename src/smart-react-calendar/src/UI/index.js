@@ -73,7 +73,7 @@ const WeekDaysStyled = styled.div`
     text-align: center;
     background: white;
     height: 50px;
-    border: 1px solid #0e71e3;
+    border: 1px solid ${props => props.theme.primaryColor};
 `
 const WeekDaysTextStyled = styled.p`
     display: flex;
@@ -154,9 +154,9 @@ const DayStyled = styled.span`
     font-size: 16px;
 
     ${props => props.state.includes('today') && `
-        font-weight: bold;
         border: 1px solid ${props.theme.primaryColor};
-        color: ${props.theme.primaryColor};
+        color: ${props.theme.secondaç};
+        border-radius: 50%;
     `}
     ${props => props.state.includes('weekend') && `
     `}
