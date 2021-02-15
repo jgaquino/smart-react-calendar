@@ -1,6 +1,6 @@
 # Smart React Calendar
 
-Simple calendar for your ReactJS 
+Simple calendar for your ReactJS app
 
 ![alt text](https://projects.jgfrontend.com/smart-react-calendar-assets/screenshot-calendar-en.png)
 
