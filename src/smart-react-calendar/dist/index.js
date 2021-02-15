@@ -6,6 +6,7 @@ var PropTypes = require('prop-types');
 var moment$1 = require('moment-timezone');
 var moment = require('moment');
 var es$1 = require('moment/locale/es');
+var pt$1 = require('moment/locale/pt');
 
 function _interopDefaultLegacy (e) { return e && typeof e === 'object' && 'default' in e ? e : { 'default': e }; }
 
@@ -15,6 +16,7 @@ var PropTypes__default = /*#__PURE__*/_interopDefaultLegacy(PropTypes);
 var moment__default$1 = /*#__PURE__*/_interopDefaultLegacy(moment$1);
 var moment__default = /*#__PURE__*/_interopDefaultLegacy(moment);
 var es__default = /*#__PURE__*/_interopDefaultLegacy(es$1);
+var pt__default = /*#__PURE__*/_interopDefaultLegacy(pt$1);
 
 function _taggedTemplateLiteral(strings, raw) {
   if (!raw) {
@@ -160,9 +162,19 @@ var en$1 = {
   en: en
 };
 
+moment__default['default'].updateLocale('pt', {
+  parentLocale: 'pt',
+  today: 'Hoje',
+  noDateSelected: 'Selecione uma data'
+});
+var pt = {
+  pt: pt__default['default']
+};
+
 var locales = {
   es: es,
-  en: en$1
+  en: en$1,
+  pt: pt
 };
 
 var useGenerateDateStructureObject = function useGenerateDateStructureObject(START_DATE, END_DATE) {
@@ -243,7 +255,9 @@ var HeaderDateSelectedStyled = styled__default['default'].p(_templateObject5 || 
 var HeaderBtnTodayStyled = styled__default['default'].button(_templateObject6 || (_templateObject6 = _taggedTemplateLiteral(["\n    background: white;\n    color: ", ";\n    font-weight: 600;\n    outline: none;\n    border: none;\n    padding: 5px 10px;\n    cursor: pointer;\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), function (props) {
   return props.theme.secondaryColor;
 }, MOBILE);
-var WeekDaysStyled = styled__default['default'].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n    text-align: center;\n    background: white;\n    height: 50px;\n    border: 1px solid #0e71e3;\n"])));
+var WeekDaysStyled = styled__default['default'].div(_templateObject7 || (_templateObject7 = _taggedTemplateLiteral(["\n    display: grid;\n    grid-template-columns: repeat(7, 1fr);\n    text-align: center;\n    background: white;\n    height: 50px;\n    border: 1px solid ", ";\n"])), function (props) {
+  return props.theme.primaryColor;
+});
 var WeekDaysTextStyled = styled__default['default'].p(_templateObject8 || (_templateObject8 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    color: ", ";\n    font-weight: bold;\n    margin: 0;\n    padding: 0;\n\n    font-size: 16px;\n\n    @media( max-width: ", " ){\n        font-size: 12px;\n    }\n"])), function (props) {
   return props.theme.secondaryColor;
 }, MOBILE);
@@ -258,7 +272,7 @@ var DayContainerStyled = styled__default['default'].div(_templateObject12 || (_t
 var DayStyled = styled__default['default'].span(_templateObject13 || (_templateObject13 = _taggedTemplateLiteral(["\n    display: flex;\n    justify-content: center;\n    align-items: center;\n\n    width: 50px;\n    height: 50px;\n\n    color: ", ";\n    font-size: 16px;\n\n    ", "\n    ", "\n    ", "\n    ", "\n\n    @media( max-width: ", " ){\n        width: 40px;\n        height: 40px;\n        font-size: 14px;\n    }\n"])), function (props) {
   return props.theme.secondaryColor;
 }, function (props) {
-  return props.state.includes('today') && "\n        font-weight: bold;\n        border: 1px solid ".concat(props.theme.primaryColor, ";\n        color: ").concat(props.theme.primaryColor, ";\n    ");
+  return props.state.includes('today') && "\n        border: 1px solid ".concat(props.theme.primaryColor, ";\n        color: ").concat(props.theme.secondaç, ";\n        border-radius: 50%;\n    ");
 }, function (props) {
   return props.state.includes('weekend') && "\n    ";
 }, function (props) {
@@ -370,7 +384,7 @@ SmartReactCalendar.defaultProps = {
   endDate: moment__default$1['default']().add(2, 'months'),
   disabledDays: [],
   format: false,
-  locale: 'es',
+  locale: 'en',
   timezone: 'Europe/Madrid',
   onChange: function onChange() {},
   theme: {
@@ -415,7 +429,7 @@ SmartReactCalendar.propTypes = {
   startDate: isMomentOrDate,
   endDate: isMomentOrDate,
   format: PropTypes__default['default'].oneOfType([PropTypes__default['default'].string, PropTypes__default['default'].oneOf([false])]),
-  locale: PropTypes__default['default'].oneOf(['es', 'en']),
+  locale: PropTypes__default['default'].oneOf(['es', 'en', 'pt']),
   timezone: PropTypes__default['default'].string,
   disabledDays: disabledDaysIsCorrect,
   theme: PropTypes__default['default'].object
