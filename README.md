@@ -2,7 +2,7 @@
 
 Simple calendar for your ReactJS 
 
-![alt text](https://projects.jgfrontend.com/smart-react-calendar-assets/screenshot-calendar.png)
+![alt text](https://projects.jgfrontend.com/smart-react-calendar-assets/screenshot-calendar-en.png)
 
 ## Installation
 
