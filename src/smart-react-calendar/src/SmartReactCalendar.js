@@ -177,7 +177,7 @@ SmartReactCalendar.propTypes = {
     startDate: isMomentOrDate,
     endDate: isMomentOrDate,
     format: PropTypes.oneOfType([PropTypes.string, PropTypes.oneOf([false])]),
-    locale: PropTypes.oneOf(['es', 'en']),
+    locale: PropTypes.oneOf(['es', 'en', 'pt']),
     timezone: PropTypes.string,
     disabledDays: disabledDaysIsCorrect,
     theme: PropTypes.object
