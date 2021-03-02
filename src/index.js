@@ -11,7 +11,9 @@ function App() {
 
   return (
     <>
-      <h1 style={{ textAlign: 'center', marginTop: '25px' }}>Calendar: <span style={{ color: "#2e88f1", textTransform: 'uppercase' }}>{process.env.REACT_APP_ENV}</span></h1>
+      {process.env.REACT_APP_ENV === 'dev' && (
+        <h1 style={{ textAlign: 'center', marginTop: '25px' }}>Calendar: <span style={{ color: "#2e88f1", textTransform: 'uppercase' }}>{process.env.REACT_APP_ENV}</span></h1>
+      )}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh' }}>
 
 
